@@ -1,0 +1,39 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+   int n,i,j,n1,n2,n3,n4,x1,y1,x2,y2;
+   double d;
+   cout<<"enter no of points:"<<endl;
+   cin>>n;
+   int x[n],y[n];
+   cout<<"enter values of x and y co-ordinates:"<<endl;
+   for(i=0;i<n;i++)
+   {
+      cout<<"Index:"<<i<<endl;
+      cin>>x[i]>>y[i];
+   }
+   double min=sqrt((x[0]-x[1])*(x[0]-x[1])+(y[0]-y[1])*(y[0]-y[1]));
+   for(i=0;i<n-1;i++)
+   {
+      for(j=i+1;j<n;j++)
+      {
+         d=sqrt((x[i]-x[j])*(x[i]-x[j])+(y[i]-y[j])*(y[i]-y[j]));
+
+         cout<<"distance between points"<< i+1 << " and point" << j+1 <<" "<< d<< endl;
+         if(d<=min)
+         {
+            min=d;
+            x1=x[i];
+            x2=x[j];
+            y1=y[i];
+            y2=y[j];
+         }
+}
+}
+            cout<<"the minimum distance:"<<d<<endl;
+            cout<<"the points are:"<<x1<<","<<y1<<"and"<<x2<<","<<y2<<endl;
+
+
+   }
