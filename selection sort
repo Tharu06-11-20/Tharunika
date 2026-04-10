@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+   int n,i,j,min;
+   int a[n];
+   cout<<"enter no of elements:"<<endl;
+   cin>>n;
+   cout<<"enter elements of array:"<<endl;
+   for(i=0;i<n;i++)
+   {
+      cin>>a[i];
+   }
+   cout<<"before sorting:"<<endl;
+   for(i=0;i<n;i++)
+   {
+      cout<<a[i]<<"\t";
+   }
+   cout<<endl;
+   for(i=0;i<n-1;i++)
+   {
+      bool flag=false;
+      min=i;
+     for(j=i+1;j<n;j++)
+     {
+         if (a[j]<a[min])
+      {
+            min=j;
+            flag=true;
+      }
+   }
+   if(min!=i)
+   {
+      int temp=a[i];
+      a[i]=a[min];
+      a[min]=temp;
+   }
+   }
+
+cout<<"After sorting:"<<endl;
+for( i=0;i<n;i++)
+{
+   cout<<a[i]<<"\t";
+}
+cout<<endl;
+}
