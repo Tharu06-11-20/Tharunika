@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter no of elements: ";
+    cin >> n;
+
+    if (n <= 0)
+      {
+         cout<<"Enter non-negative element or greater than 0"<<endl;
+         return 0;
+      }
+
+    vector<int> a(n + 1);
+    cout << "Enter elements:" << endl;
+    for (int i = 1; i <= n; i++) cin >> a[i];
+
+    for (int i = n / 2; i >= 1; i--) {
+        int k = i;
+        int v = a[k];
+        bool is_heap = false;
+
+        while (!is_heap && 2 * k <= n) {
+            int j = 2 * k;
+            if (j < n) {
+                if (a[j] < a[j + 1]) j = j + 1;
+            }
+            if (v >= a[j]) is_heap = true;
+            else {
+                a[k] = a[j];
+                k = j;
+            }
+        }
+        a[k] = v;
+    }
+
+    cout << "After Bottom-up approach: " << endl;
+    for (int i = 1; i <= n; i++) cout << a[i] << "\t";
+    cout << endl;
+
+    for (int i = 1; i < n; i++) {
+        for (int j = 1; j <= n - i; j++) {
+            if (a[j] > a[j + 1]) swap(a[j], a[j + 1]);
+        }
+    }
+
+    cout << "After sorting:" << endl;
+    for (int i = 1; i <= n; i++) cout << a[i] << "\t";
+    cout<<endl;
+    return 0;
+}
