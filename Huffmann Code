@@ -1,0 +1,85 @@
+#include <iostream>
+using namespace std;
+
+class Huffman {
+    char data[50];
+    double freq[50];
+    int left[50], right[50];
+    int n;          
+    int size;      
+
+public:
+    
+    int findMin(bool used[]) {
+        double min = 1e9;
+        int index = -1;
+
+        for (int i = 0; i < size; i++) {
+            if (!used[i] && freq[i] < min) {
+                min = freq[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+
+  
+    void printCodes(int root, string code) {
+        if (root == -1) return;
+
+       
+        if (left[root] == -1 && right[root] == -1) {
+            cout << data[root] << " : " << code << endl;
+            return;
+        }
+
+        printCodes(left[root], code + "0");
+        printCodes(right[root], code + "1");
+    }
+
+    void build() {
+        cout << "Enter number of characters: ";
+        cin >> n;
+
+       
+        for (int i = 0; i < n; i++) {
+            cout << "Enter character: ";
+            cin >> data[i];
+            cout << "Enter frequency: ";
+            cin >> freq[i];
+
+            left[i] = right[i] = -1;
+        }
+
+        size = n;
+
+        bool used[50] = {false};
+
+     
+        for (int i = 0; i < n - 1; i++) {
+            int min1 = findMin(used);
+            used[min1] = true;
+
+            int min2 = findMin(used);
+            used[min2] = true;
+
+            
+            data[size] = '$';
+            freq[size] = freq[min1] + freq[min2];
+            left[size] = min1;
+            right[size] = min2;
+
+            used[size] = false; 
+            size++;
+        }
+
+        cout << "\nHuffman Codes:\n";
+        printCodes(size - 1, "");
+    }
+};
+
+int main() {
+    Huffman h;
+    h.build();
+    return 0;
+}
